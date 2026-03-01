@@ -1,42 +1,92 @@
-//! BlessChain CLI definition (minimal)
+// This file is part of Substrate.
 
-use sc_cli::{SubstrateCli, RunCmd};
-use sc_service::ChainSpec;
+// Copyright (C) Parity Technologies (UK) Ltd.
+// SPDX-License-Identifier: Apache-2.0
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// 	http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+use polkadot_sdk::*;
+
+#[derive(Debug, Clone)]
+pub enum Consensus {
+	ManualSeal(u64),
+	InstantSeal,
+	None,
+}
+
+impl std::str::FromStr for Consensus {
+	type Err = String;
+
+	fn from_str(s: &str) -> Result<Self, Self::Err> {
+		Ok(if s == "instant-seal" {
+			Consensus::InstantSeal
+		} else if let Some(block_time) = s.strip_prefix("manual-seal-") {
+			Consensus::ManualSeal(block_time.parse().map_err(|_| "invalid block time")?)
+		} else if s.to_lowercase() == "none" {
+			Consensus::None
+		} else {
+			return Err("incorrect consensus identifier".into());
+		})
+	}
+}
 
 #[derive(Debug, clap::Parser)]
-#[command(name = "blesschain-node")]
 pub struct Cli {
-    #[command(subcommand)]
-    pub subcommand: Option<RunCmd>,
+	#[command(subcommand)]
+	pub subcommand: Option<Subcommand>,
+
+	#[clap(long, default_value = "manual-seal-3000")]
+	pub consensus: Consensus,
+
+	#[clap(flatten)]
+	pub run: sc_cli::RunCmd,
 }
 
-impl SubstrateCli for Cli {
-    fn impl_name() -> String {
-        "BlessChain Node".into()
-    }
+#[derive(Debug, clap::Subcommand)]
+pub enum Subcommand {
+	/// Key management cli utilities
+	#[command(subcommand)]
+	Key(sc_cli::KeySubcommand),
 
-    fn impl_version() -> String {
-        env!("CARGO_PKG_VERSION").into()
-    }
+	/// Build a chain specification.
+	/// DEPRECATED: `build-spec` command will be removed after 1/04/2026. Use `export-chain-spec`
+	/// command instead.
+	#[deprecated(
+		note = "build-spec command will be removed after 1/04/2026. Use export-chain-spec command instead"
+	)]
+	BuildSpec(sc_cli::BuildSpecCmd),
 
-    fn description() -> String {
-        "BlessChain minimal node".into()
-    }
+	/// Export the chain specification.
+	ExportChainSpec(sc_cli::ExportChainSpecCmd),
 
-    fn author() -> String {
-        "BlessChain Team".into()
-    }
+	/// Validate blocks.
+	CheckBlock(sc_cli::CheckBlockCmd),
 
-    fn support_url() -> String {
-        "https://blesschain.com".into()
-    }
+	/// Export blocks.
+	ExportBlocks(sc_cli::ExportBlocksCmd),
 
-    fn copyright_start_year() -> i32 {
-        2025
-    }
+	/// Export the state of a given block into a chain spec.
+	ExportState(sc_cli::ExportStateCmd),
 
-    fn load_spec(&self, _: &str) -> Result<Box<dyn ChainSpec>, String> {
-        Ok(Box::new(crate::chain_spec::development_config()?))
-    }
+	/// Import blocks.
+	ImportBlocks(sc_cli::ImportBlocksCmd),
+
+	/// Remove the whole chain.
+	PurgeChain(sc_cli::PurgeChainCmd),
+
+	/// Revert the chain to a previous state.
+	Revert(sc_cli::RevertCmd),
+
+	/// Db meta columns information.
+	ChainInfo(sc_cli::ChainInfoCmd),
 }
-

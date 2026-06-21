@@ -1,287 +1,138 @@
-# 🧱 BlessChain
+# BlessChain
 
-**Next-Generation Home-Node Blockchain Network**
+BlessChain is a Substrate-based development blockchain focused on structural simplicity, fixed supply design, zero inflation, and long-term infrastructure stability.
 
-**Modular · Energy-Aware · Community-Powered**
+## Current Development Status
 
-BlessChain is a minimal proof-of-concept blockchain designed to evolve from **MVP → TestNet → MainNet**,  
-focusing on home-server validator nodes and distributed edge infrastructure.
+BlessChain is currently in the Development Network phase.
 
-**Version:** v0.2.0 (MVP2.0)  
-**Status:** MVP → TestNet Evolution  
-**Author:** BlessChain Team  
-**Project Director:** Joseph Wang  
+### Completed
 
-## Follow us
+- Runtime compiles successfully
+- Real Substrate node service is connected
+- Manual-seal development consensus is running
+- RPC server available at `ws://127.0.0.1:9944`
+- Polkadot.js connectivity confirmed
+- Blocks are produced, imported, and finalized in local dev mode
 
-- X (Twitter): https://x.com/BlesschainHQ
-- Website: https://blesschain.org
-- GitHub Org: https://github.com/blesschain-official
+### Current Node Status
 
----
+The previous mock block loop has been replaced by a real Substrate service using:
 
-## 📘 Blesschain Litepaper v0.1
+- `sc_service`
+- transaction pool
+- network service
+- RPC service
+- manual-seal block production
 
-Blesschain Litepaper v0.1 provides a high-level overview of the project vision, architectural principles, current development status, and roadmap.
+### Current Phase
 
-This Litepaper is intended for community members, contributors, and external readers.  
-It does **not** replace technical documentation or source code in this repository.
+Development Network / Devnet
 
-- Runtime layer: **Completed**
-- Mock block execution: **Completed**
-- Node & consensus integration: **In progress**
+### Next Phase
 
-### 🌍 Language Support
-The Litepaper is available in **13 languages**, including Simplified and Traditional Chinese.
+Multi-validator local testnet, then staged public testnet.
 
-### 📥 Download
-- **GitHub Release:**  
-  https://github.com/blesschain-official/Blesschain/releases/tag/v0.1-litepaper
+## Important Notice
 
----
+BlessChain is not yet mainnet.  
+The current network is for development, testing, and infrastructure validation only.
 
-📌 Overview
+<div align="center">
 
-BlessChain is a lightweight Substrate-based blockchain designed to power the Bless Ecosystem — a decentralized network of:
+![SDK Logo](./docs/images/Polkadot_Logo_Horizontal_Pink_White.png#gh-dark-mode-only)
+![SDK Logo](./docs/images/Polkadot_Logo_Horizontal_Pink_Black.png#gh-light-mode-only)
 
-AI video & image services
+# Polkadot SDK
 
-TTS / ASR services
+![GitHub stars](https://img.shields.io/github/stars/paritytech/polkadot-sdk)&nbsp;&nbsp;![GitHub
+forks](https://img.shields.io/github/forks/paritytech/polkadot-sdk)
 
-Home-server validator nodes
+<!-- markdownlint-disable-next-line MD013 -->
+[![StackExchange](https://img.shields.io/badge/StackExchange-Community%20&%20Support-222222?logo=stackexchange)](https://substrate.stackexchange.com/)&nbsp;&nbsp;![GitHub contributors](https://img.shields.io/github/contributors/paritytech/polkadot-sdk)&nbsp;&nbsp;![GitHub commit activity](https://img.shields.io/github/commit-activity/m/paritytech/polkadot-sdk)&nbsp;&nbsp;![GitHub last commit](https://img.shields.io/github/last-commit/paritytech/polkadot-sdk)
 
-Micro data-centers in hotels & homes
+> The Polkadot SDK repository provides all the components needed to start building on the
+> [Polkadot](https://polkadot.com/) network, a multi-chain blockchain platform that enables
+> different blockchains to interoperate and share information in a secure and scalable way.
 
-Token economy (BBTC) across all “Bless” products
+</div>
 
-Distributed compute + storage called HomeCDN
+## ⚡ Quickstart
+If you want to get an example node running quickly you can execute the following getting started script:
 
+```
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/paritytech/polkadot-sdk/master/scripts/getting-started.sh | bash
+```
 
-This repository contains:
+## 👩🏽‍💻 Building
 
-blesschain-node — Rust node implementation
+In order to build this project you need to install some dependencies, follow the instructions in [this guide](https://docs.polkadot.com/develop/parachains/install-polkadot-sdk).
 
-blesschain-runtime — Minimal FRAME runtime
+## 📚 Documentation
 
-Local Substrate SDK vendor — fully offline build (~/blesschain-sdk)
+* [Polkadot Documentation Portal](https://docs.polkadot.com)
+* [🦀 rust-docs](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/index.html): Where we keep track of
+the API docs of our Rust crates. Includes:
+  * [Introduction](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/polkadot_sdk/index.html)
+	to each component of the Polkadot SDK: Substrate, FRAME, Cumulus, and XCM
+  * [Guides](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/index.html),
+	namely how to build your first FRAME pallet
+  * [Templates](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/polkadot_sdk/templates/index.html)
+    for starting a new project.
+  * [External Resources](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/external_resources/index.html)
+* Have a question? You can ask in the Polkadot SDK Developers Chat.
+Messages from either of these channels are bridged to the other, so you can use whichever one you like.
+  * [Telegram](https://t.me/substratedevs)
+  * [Matrix](https://matrix.to/#/#substratedevs:matrix.org)
+  * [Discord](https://discord.com/channels/722223075629727774/997505821955076196)
+  * [Polkadot and Substrate StackExchange](https://substrate.stackexchange.com/)
 
-Genesis + chain_spec — dynamic mock block production
+## 🚀 Releases
 
+<!-- markdownlint-disable-next-line MD013 -->
+![Current Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/polkadot-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/polkadot-sdk-next.svg)
 
-MVP2.0 (v0.2.0) is the first fully operational chain, verified on physical hardware.
----
-🚀 Key Features
+The Polkadot SDK is released every three months as a `Polkadot stableYYMM` release. Each stable release is supported for
+one year with patches. See the next upcoming versions in the [Release
+Registry](https://github.com/paritytech/release-registry/) and more docs in [RELEASE.md](./docs/RELEASE.md).
 
-🔧 Minimal Native Runtime
+You can use [`psvm`](https://github.com/paritytech/psvm) to update all dependencies to a specific
+version without needing to manually select the correct version for each crate.
 
-pallet-system
+## 🛠️ Tooling
 
-pallet-balances
+[Polkadot SDK Version Manager](https://github.com/paritytech/psvm):
+A simple tool to manage and update the Polkadot SDK dependencies in any Cargo.toml file.
+It will automatically update the Polkadot SDK dependencies to their correct crates.io version.
 
-pallet-aura
+## 🔐 Security
 
-pallet-timestamp
+The security policy and procedures can be found in
+[docs/contributor/SECURITY.md](./docs/contributor/SECURITY.md).
 
+## 🤍 Contributing & Code of Conduct
 
-⚡ Dynamic Block Production
+Ensure you follow our [contribution guidelines](./docs/contributor/CONTRIBUTING.md). In every
+interaction and contribution, this project adheres to the [Contributor Covenant Code of
+Conduct](./docs/contributor/CODE_OF_CONDUCT.md).
 
---block-interval 2    # Default 2 seconds
---block-interval 7    # Custom interval
+### 👾 Ready to Contribute?
 
-🧩 Fully Native Build (No WASM)
+Take a look at the issues labeled with [`mentor`](https://github.com/paritytech/polkadot-sdk/labels/C1-mentor)
+(or alternatively [this](https://mentor.tasty.limo/) page, created by one of the maintainers) label to get started!
+We always recognize valuable contributions by proposing an on-chain tip to the Polkadot network as a token of our
+appreciation.
 
-No wasm-builder
+## Polkadot Fellowship
 
-No wasm-opt
+Development in this repo usually goes hand in hand with the `fellowship` organization. In short,
+this repository provides all the SDK pieces needed to build both Polkadot and its parachains. But,
+the actual Polkadot runtime lives in the `fellowship/runtimes` repository. Read more about the
+fellowship, this separation, the RFC process
+[here](https://polkadot-fellows.github.io/dashboard/).
 
-No external GitHub downloads
+## History
 
-100% controlled local vendor SDK
-
-
-🏠 Optimized for Home Nodes
-
-Tested on:
-
-Dell R730XD
-
-Dell T7910
-
-Dell T7810
----
-
-🧰 Prerequisites
-
-Component	Version
-
-OS	Ubuntu 22.04 / 24.04 LTS
-Rust	rustc 1.81+
-Cargo	Included with Rust
-Toolchain	stable
-Substrate SDK	~/blesschain-sdk
-Build Target	Native only
-
-
-
----
-
-📦 Install Build Requirements
-
-sudo apt update
-sudo apt install -y clang cmake make pkg-config libssl-dev git curl build-essential
-
-Install Rust
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
-rustup default stable
-
-(Optional WASM target)
-
-rustup target add wasm32-unknown-unknown
-
-
----
-
-📁 Create Standard BlessChain Directories
-
-sudo mkdir -p /home/blesschain
-sudo ln -s /home/$(whoami)/blesschain /home/blesschain/blesschain
-sudo ln -s /home/$(whoami)/blesschain-sdk /home/blesschain/blesschain-sdk
-
----
-
-🏗️ Build BlessChain (Native)
-
-1️⃣ Clone
-
-git clone https://github.com/blesschain-official/blesschain.git
-cd blesschain
-
-2️⃣ Clean
-
-cargo clean
-
-3️⃣ Build the Node
-
-cargo build --release -p blesschain-node \
-  --target-dir /mnt/data/blesschain-target
-
-Final binary:
-
-/mnt/data/blesschain-target/release/blesschain-node
-
----
-
-▶️ Run the Local Development Chain
-
-Default (2-second blocks)
-
-/mnt/data/blesschain-target/release/blesschain-node
-
-Custom block interval
-
-/mnt/data/blesschain-target/release/blesschain-node \
-  --chain dev \
-  --block-interval 7
-
-Example output:
-
-🏗  Starting BlessChain Dev Node...
-⏱  Producing mock blocks every 2 seconds
-🧱  Imported #1 (0x....)
-🧱  Imported #2 (0x....)
-
----
-
-🧱 Project Structure
-
-blesschain/
-├── node/                     # Node code (main.rs, service.rs, command.rs)
-├── blesschain-runtime/       # Runtime pallets
-├── blesschain-sdk/           # Local Substrate SDK vendor
-├── local-crates/             # Local patches (wasm-builder-runner etc.)
-├── docs/                     # Whitepaper & architecture docs
-└── Cargo.toml                # Workspace definition
-
----
-
-🧭 Validator Setup (TestNet Simulation)
-
-1️⃣ Generate Keys
-
-/mnt/data/blesschain-target/release/blesschain-node key generate --scheme sr25519
-
-2️⃣ Export chain spec
-
-/mnt/data/blesschain-target/release/blesschain-node \
-  build-spec > blesschain-testnet.json
-
-3️⃣ Start validator
-
-/mnt/data/blesschain-target/release/blesschain-node \
-  --chain blesschain-testnet.json \
-  --block-interval 2
-
----
-
-🔍 Troubleshooting
-
-Issue	Solution
-
-frame-benchmarking errors	Remove benchmarking from runtime
-sp-test-primitives missing	Add under [workspace.dependencies] or disable
-/mnt/data permission denied	sudo mkdir -p + sudo chown $USER:$USER
-wasm builder errors	Remove wasm-builder & wasm-opt
-bandersnatch-experimental issues	Ensure blesschain-sdk matches runtime branch
-
----
-
-📘 Version History
-
-Version	Date	Notes
-
-v0.1.0-mvp	2025-10-20	First runnable MVP
-v0.1.1-devnet	2025-10-30	Minor patches
-v0.2.0-mvp2.0	2025-11-11	Rebuilt node+runtime with full vendor SDK
-
----
-
-📜 License
-
-GPL-3.0-only — see LICENSE.
-
-
----
-
-🕊 BlessChain Vision
-
-BlessChain powers a decentralized ecosystem built around:
-
-AI Video Generation (BlessAIVideo)
-
-AI Voice (BlessVoice)
-
-Image Hosting (BlessImage)
-
-Video Platform (BlessVideo)
-
-Booking (BlessBooking)
-
-Hosting (BlessHosting)
-
-Control Panel (BlessPanel)
-
-Search Engine (BlessSearch)
-
-Token Economy (BBTC)
-
-HomeCDN distributed compute
-
-MVP → TestNet → MainNet
-This README represents the stable public version for the main branch.
-
-🕊️ Credits
-Developed by the BlessChain Team
- 🌐 https://blesschain.org
- Project Director: Joseph Wang
+This repository is the amalgamation of 3 separate repositories that used to make up Polkadot SDK,
+namely Substrate, Polkadot and Cumulus. Read more about the merge and its history
+[here](https://polkadot-public.notion.site/Polkadot-SDK-FAQ-fbc4cecc2c46443fb37b9eeec2f0d85f).

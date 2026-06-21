@@ -1,30 +1,29 @@
-//! BlessChain minimal node (standalone mock runner)
-//! Purpose: give you visible "blocks" so you can verify the node loop works.
+// This file is part of Substrate.
 
-mod service;
+// Copyright (C) Parity Technologies (UK) Ltd.
+// SPDX-License-Identifier: Apache-2.0
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// 	http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+//! BlessChain Node CLI library.
+#![warn(missing_docs)]
+
 mod chain_spec;
+mod cli;
+mod command;
+mod rpc;
+mod service;
 
-use clap::Parser;
-
-#[derive(Parser, Debug)]
-#[command(name = "blesschain-node")]
-#[command(about = "BlessChain minimal node (mock blocks)", long_about = None)]
-struct Cli {
-    /// Chain to run (placeholder, e.g., dev)
-    #[arg(long, default_value = "dev")]
-    chain: String,
-
-    /// Seconds between mock blocks
-    #[arg(long, default_value_t = 2u64)]
-    block_interval: u64,
+fn main() -> polkadot_sdk::sc_cli::Result<()> {
+	command::run()
 }
-
-fn main() {
-    let cli = Cli::parse();
-    println!("🚀 Starting BlessChain minimal node ...");
-    chain_spec::development_config();
-
-    // 启动“模拟出块”循环
-    service::run(cli.block_interval);
-}
-

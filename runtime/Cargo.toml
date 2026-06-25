@@ -1,0 +1,46 @@
+[package]
+name = "blesschain-runtime"
+description = "A solochain runtime template built with Substrate, part of Polkadot Sdk."
+version = "0.0.0"
+license = "Unlicense"
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+codec = { workspace = true }
+polkadot-sdk = { workspace = true, features = [
+	"pallet-aura",
+	"pallet-balances",
+	"pallet-grandpa",
+	"pallet-sudo",
+	"pallet-timestamp",
+	"pallet-transaction-payment",
+	"pallet-transaction-payment-rpc-runtime-api",
+	"runtime",
+	"sp-consensus-aura",
+	"sp-consensus-grandpa",
+] }
+scale-info = { workspace = true }
+serde_json = { workspace = true, default-features = false, features = ["alloc"] }
+
+# local pallet templates
+pallet-minimal-template = { workspace = true }
+
+[build-dependencies]
+polkadot-sdk = { optional = true, workspace = true, features = ["substrate-wasm-builder"] }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+	"pallet-minimal-template/std",
+	"polkadot-sdk/std",
+	"scale-info/std",
+	"serde_json/std",
+]

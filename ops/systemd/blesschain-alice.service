@@ -1,0 +1,25 @@
+[Unit]
+Description=BlessChain Validator Alice
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=t791001
+Restart=always
+RestartSec=5
+LimitNOFILE=65535
+
+ExecStart=/mnt/data/blesschain-target/release/blesschain-node \
+  --chain /etc/blesschain/blesschain-local-raw.json \
+  --base-path /var/lib/blesschain/alice \
+  --validator \
+  --force-authoring \
+  --alice \
+  --name BlessChain-Alice \
+  --port 30333 \
+  --rpc-port 9944 \
+  --prometheus-port 9625 \
+  --unsafe-force-node-key-generation
+
+[Install]
+WantedBy=multi-user.target
